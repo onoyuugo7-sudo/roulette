@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Meal Decider | 今日の晩御飯決め</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DINNER DECIDER</h1>
+            <div class="mode-toggle">
+                <button id="homeMode" class="mode-btn active">家庭料理</button>
+                <button id="outMode" class="mode-btn">外食メニュー</button>
+            </div>
+            <p class="subtitle" id="modeSubtitle">今日は家で作る？それとも外で食べる？</p>
+        </header>
+
+        <section class="roulette-section">
+            <div class="roulette-container">
+                <div class="roulette-indicator"></div>
+                <div id="wheel" class="roulette-wheel">
+                    <!-- Dishes will be injected here -->
+                </div>
+            </div>
+        </section>
+
+            <button id="spinBtn" class="spin-btn pulse">Spin!</button>
+        </section>
+    </div>
+
+    <!-- Result Overlay -->
+    <div id="resultOverlay" class="result-overlay">
+        <div class="result-card">
+            <div class="result-content-layout">
+                <div class="result-main">
+                    <img id="resultImg" src="" alt="Result" class="result-img">
+                    <h2 id="resultTitle" class="result-title">料理名</h2>
+                    <p id="resultDesc" class="result-desc">料理の説明文</p>
+                </div>
+                <div id="recipeSection" class="recipe-section">
+                    <div class="recipe-grid">
+                        <div class="ingredients-box">
+                            <h3>🛒 材料 (1人前)</h3>
+                            <ul id="ingredientsList"></ul>
+                        </div>
+                        <div class="steps-box">
+                            <h3>🍳 作り方</h3>
+                            <ol id="stepsList"></ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="closeBtn" class="close-btn">もう一度引く</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

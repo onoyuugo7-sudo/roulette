@@ -1,0 +1,389 @@
+:root {
+    --primary: #ff8c94; /* Soft Pink */
+    --primary-hover: #ff707a;
+    --bg-main: #fffdf9; /* Creamy White */
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: #ffd1dc;
+    --text-main: #5d4037; /* Gentle Brown */
+    --text-muted: #8d6e63;
+    --accent: #ffcc5c; /* Soft Yellow */
+    --font-family: 'M PLUS Rounded 1c', 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: radial-gradient(#ffebee 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--text-main);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+header {
+    text-align: center;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-shadow: 2px 2px 0px #fff, 4px 4px 0px var(--glass-border);
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.mode-toggle {
+    display: flex;
+    gap: 1rem;
+    background: #fff;
+    padding: 0.4rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 1rem;
+    border: 2px solid var(--glass-border);
+}
+
+.mode-btn {
+    padding: 0.6rem 2rem;
+    border-radius: 25px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 0px #ff6b81;
+}
+
+p.subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+/* Roulette Section */
+.roulette-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.roulette-wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 12px solid #fff;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+    box-shadow: 0 10px 40px rgba(255, 140, 148, 0.2);
+}
+
+.roulette-indicator {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 30px solid var(--primary);
+    z-index: 10;
+    filter: drop-shadow(0 0 10px var(--primary));
+}
+
+.dish-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px; /* Reduced from 100px for more items */
+    height: 80px; /* Reduced from 100px */
+    background: #fff;
+    border-radius: 20px;
+    border: 3px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.4rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 0px var(--glass-border);
+}
+
+.dish-card img {
+    width: 40px; /* Reduced */
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.2rem;
+    border: 2px solid var(--primary);
+}
+
+.dish-card span {
+    font-size: 0.65rem; /* Shrunk */
+    font-weight: 700;
+    color: var(--text-main);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.spin-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, #ff6b81 100%);
+    color: white;
+    border: none;
+    padding: 1.2rem 4rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 0px #ff6b81, 0 15px 30px rgba(255, 140, 148, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.spin-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 12px 0px #ff6b81, 0 20px 40px rgba(255, 140, 148, 0.5);
+}
+
+.spin-btn:active {
+    transform: translateY(8px);
+    box-shadow: 0 2px 0px #ff6b81;
+}
+
+.spin-btn:disabled {
+    background: #333;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Category Filter */
+.categories {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cat-btn {
+    background: #fff;
+    border: 2px solid var(--glass-border);
+    color: var(--text-muted);
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
+}
+
+.cat-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 0px #ff6b81;
+    transform: translateY(-2px);
+}
+
+/* Selection Modal/Result */
+.result-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.result-card {
+    background: #fff;
+    border: 5px solid var(--primary);
+    padding: 2.5rem;
+    border-radius: 40px;
+    text-align: center;
+    max-width: 800px; /* Increased to fit recipe */
+    width: 95%;
+    transform: scale(0.8);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 0px var(--glass-border);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.result-content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .result-content-layout {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+    }
+}
+
+.result-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recipe-section {
+    flex: 1.5;
+    background: #fff9f9;
+    border-radius: 25px;
+    padding: 1.5rem;
+    border: 2px dashed var(--glass-border);
+    width: 100%;
+}
+
+.recipe-grid {
+    display: grid;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.recipe-section h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    border-bottom: 2px solid var(--glass-border);
+    display: inline-block;
+}
+
+.ingredients-box ul, .steps-box ol {
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.ingredients-box li {
+    margin-bottom: 0.3rem;
+}
+
+.steps-box li {
+    margin-bottom: 0.5rem;
+}
+
+.result-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.result-overlay.show .result-card {
+    transform: scale(1);
+}
+
+.result-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border: 5px solid var(--primary);
+    box-shadow: 0 0 40px rgba(255, 77, 77, 0.4);
+}
+
+.result-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.result-desc {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.close-btn {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 0.8rem 2rem;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: var(--glass-border);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
